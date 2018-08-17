@@ -5,9 +5,8 @@
   .navbar-center
     .navbar-item
       .avatar
-        if user.profile.picture
-          img(src=user.profile.picture)
-      span= user.profile.name || user.id
+        img(src=user.profile.picture || '/assets/default.png')
+      span= user.profile.name || user.spotify
   .navbar-right
     .navbar-item
       a.button.primary(href='/logout') Logout

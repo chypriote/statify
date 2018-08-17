@@ -7,8 +7,8 @@ block content
         - var stat = user.stats.pop();
         .user-row
           .user-picture
-            img(src=user.profile.picture)
-            .user-name=user.profile.name
+            img(src=user.profile.picture || '/assets/default.png')
+            .user-name=user.profile.name || user.spotify
           .user-body
             .row
               .user-headers
