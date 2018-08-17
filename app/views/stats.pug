@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  .container
+    .item-grid
+      .item-row
+        .row-header
+          .header-title Last month
+          .header-subtitle
+            .left Artists
+            .right Tracks
+        .row-header
+          .header-title Last six months
+          .header-subtitle
+            .left Artists
+            .right Tracks
+        .row-header
+          .header-title All times
+          .header-subtitle
+            .left Artists
+            .right Tracks
+      - for (var i = 0; i < 50; ++i) {
+        .item-row
+          +artist(month.artists[i])
+          +track(month.tracks[i])
+          +artist(semester.artists[i])
+          +track(semester.tracks[i])
+          +artist(alltime.artists[i])
+          +track(alltime.tracks[i])
+      - }
+
+
+
+mixin artist(artist)
+  .item-panel
+    .item-picture
+      img(src=artist.images[0].url)
+    .item-body
+      .item-name=artist.name
+
+mixin track(track)
+  .item-panel
+    .item-picture
+      img(src=track.album.images[0].url)
+    .item-body
+      .item-name=track.name
+      .item-subtitle
+        each artist, id in track.artists
+          span=`${artist.name}${id === track.artists.length - 1 ? '' : ', '}`
+      .item-caption=track.album.name

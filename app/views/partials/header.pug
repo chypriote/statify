@@ -1,0 +1,13 @@
+.navbar
+  .navbar-left
+    a.navbar-brand(href='/')
+      | Statify
+  .navbar-center
+    .navbar-item
+      .avatar
+        if user.profile.picture
+          img(src=user.profile.picture)
+      span= user.profile.name || user.id
+  .navbar-right
+    .navbar-item
+      a.button.primary(href='/logout') Logout

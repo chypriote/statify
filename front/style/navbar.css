@@ -1,0 +1,49 @@
+.navbar {
+	position: fixed;
+	width: 100%;
+
+	background: #000;
+	color: #ffffff;
+
+	display: flex;
+	padding: .5rem 0;
+}
+
+.navbar-left {
+	padding-left: 2rem;
+	display: flex;
+	align-items: center;
+}
+.navbar-center {
+	flex-grow: 1;
+	text-align: center;
+}
+.navbar-right {
+	padding-right: 2rem;
+}
+
+.navbar-brand {
+	font-family: 'Baloo Bhai', cursive;
+	font-size: 2.3rem;
+	color: #ffffff;
+	text-decoration: none;
+
+	&:hover {
+		color: var(--primary);
+		cursor: pointer;
+	}
+}
+
+.navbar-item {
+	display: inline-flex;
+	align-items: center;
+}
+
+.avatar {
+	margin-right: .5rem;
+	img {
+		width: 2.5rem;
+		height: 2.5rem;
+		border-radius: 50%;
+	}
+}

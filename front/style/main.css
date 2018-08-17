@@ -1,0 +1,58 @@
+@import 'normalize';
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
+
+@import 'variables';
+@import 'button';
+@import 'artist-grid';
+@import 'navbar';
+
+body {
+	background: #000;
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+}
+
+.navbar + .wrapper {
+	padding-top: 4rem;
+	background: #f8f8f8;
+}
+
+main {
+	flex-grow: 1;
+}
+
+.container {
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+
+	@media (min-width: 768px) {
+    width: 750px;
+	}
+	@media (min-width: 992px) {
+		width: 970px;
+	}
+	@media (min-width: 1200px) {
+		width: 1170px;
+	}
+}
+
+.logo {
+	font-family: 'Baloo Bhai', cursive;
+	font-size: 20rem;
+	color: var(--primary);
+	text-align: center;
+	padding: 5rem 0;
+}
+.login {
+	display: flex;
+	justify-content: center;
+	padding-top: 4rem;
+}
