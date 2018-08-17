@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  .container
+    .user-grid
+      each user in users
+        - var stat = user.stats.pop();
+        .user-row
+          .user-picture
+            img(src=user.profile.picture)
+            .user-name=user.profile.name
+          .user-body
+            .row
+              .user-headers
+                div Last month
+              .user-artists
+                +artists(stat.month.artists)
+              .user-tracks
+                +tracks(stat.month.tracks)
+            .row
+              .user-headers
+                div Last 6 months
+              .user-artists
+                +artists(stat.semester.artists)
+              .user-tracks
+                +tracks(stat.semester.tracks)
+            .row
+              .user-headers
+                div All time
+              .user-artists
+                +artists(stat.alltime.artists)
+              .user-tracks
+                +tracks(stat.alltime.tracks)
+
+mixin artists(artists)
+  - for (var i = 0; i < 5; ++i) {
+    .group
+      img(src=artists[i].images[0].url)
+      .item-name=artists[i].name
+  - }
+
+mixin tracks(tracks)
+  - for (var i = 0; i < 5; ++i) {
+    .group
+      img(src=tracks[i].album.images[0].url)
+      .item-name=`${tracks[i].artists[0].name} - ${tracks[i].name}`
+  - }

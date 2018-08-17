@@ -24,24 +24,28 @@ passport.use(new SpotifyStrategy({
 	User.findOne({ spotify: profile.id }, (err, existingUser) => {
 		if (err) { return done(err); }
 		if (existingUser) {
+			console.log(chalk.cyan('Found existing user'));
+
 			existingUser.accessToken = accessToken;
 			existingUser.refreshToken = refreshToken;
 			existingUser.save((err) => {
 				done(err, existingUser);
 			});
-		}
+		} else {
+			console.log(chalk.cyan('Creating new user'));
 
-		const user = new User();
-		user.spotify = profile.id;
-		user.accessToken = accessToken;
-		user.refreshToken = refreshToken;
-		user.profile.name = profile.displayName;
-		const [picture] = profile.photos;
-		user.profile.picture = picture;
-		user.profile.country = profile.country;
-		user.save((err) => {
-			done(err, user);
-		});
+			const user = new User();
+			user.spotify = profile.id;
+			user.accessToken = accessToken;
+			user.refreshToken = refreshToken;
+			user.profile.name = profile.displayName;
+			const [picture] = profile.photos;
+			user.profile.picture = picture;
+			user.profile.country = profile.country;
+			user.save((err) => {
+				done(err, user);
+			});
+		}
 	});
 }));
 
@@ -49,15 +53,5 @@ exports.isAuthenticated = (req, res, next) => {
 	if (req.isAuthenticated()) {
 		return next();
 	}
-	res.redirect('/login');
-};
-
-exports.isAuthorized = (req, res, next) => {
-	const provider = req.path.split('/').slice(-1)[0];
-	const token = req.user.tokens.find(token => token.kind === provider);
-	if (token) {
-		next();
-	} else {
-		res.redirect(`/auth/${provider}`);
-	}
+	res.redirect('/');
 };

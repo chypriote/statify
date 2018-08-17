@@ -9,7 +9,7 @@ const postcssNested = require('postcss-nested');
 const postcssColorFunction = require('postcss-color-function');
 const postcssCustomProperties = require('postcss-custom-properties');
 
-const errorHandler = function (error) { console.log(chalk.red(error.message)); this.emit('end'); };
+const errorHandler = function errorHandler(error) { console.log(chalk.red(error.message)); this.emit('end'); };
 
 gulp.task('browser-sync', () => {
 	browserSync({

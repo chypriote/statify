@@ -61,7 +61,7 @@ app.use((req, res, next) => {
 	next();
 });
 app.use((req, res, next) => {
-	if (!req.user && req.path !== '/login' && !req.path.match(/^\/auth/) && !req.path.match(/\./)) {
+	if (!req.user && !req.path.match(/^\/auth/) && !req.path.match(/\./)) {
 		req.session.returnTo = req.originalUrl;
 	} else if (req.user) {
 		req.session.returnTo = req.originalUrl;
@@ -72,6 +72,7 @@ app.use('/', express.static(path.join(__dirname, 'public'), { maxAge: 3155760000
 
 app.get('/', homeController.index);
 app.get('/stats', passportConfig.isAuthenticated, homeController.stats);
+app.get('/users', passportConfig.isAuthenticated, homeController.users);
 app.get('/logout', userController.logout);
 
 app.get('/auth/spotify', passport.authenticate('spotify', {

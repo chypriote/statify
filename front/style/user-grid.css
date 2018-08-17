@@ -1,0 +1,70 @@
+.user-grid {
+	display: flex;
+	flex-direction: column;
+}
+
+.user-row {
+	display: flex;
+	padding: 2rem 0 3rem;
+}
+
+.user-picture {
+	text-align: center;
+	padding: 0 1rem;
+
+	img {
+		width: 5rem;
+		height: 5rem;
+		border-radius: 50%;
+		margin-bottom: .5rem;
+	}
+}
+.user-name {
+	font-weight: bold;
+}
+
+.user-body {
+	flex-grow: 1;
+	border-left: 1px solid grey;
+	padding: 0 1rem;
+
+	img {
+		width: 3rem;
+		height: 3rem;
+		border-radius: 50%;
+		margin-right: .5rem;
+	}
+
+	.row {
+		display: flex;
+		align-items: center;
+		&:not(:last-of-type) {margin-bottom: .5rem;}
+	}
+
+	.group {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+	}
+	.item-name {
+		display: none;
+		margin-right: .5rem;
+	}
+	
+	.group.active .item-name {
+		display: block;
+	}
+}
+.user-headers {
+	flex: 0 0 15%
+}
+.user-artists {
+	flex-grow: 1;
+	display: flex;
+}
+.user-tracks {
+	flex-grow: 1;
+	display: flex;
+}
+
+

@@ -3,8 +3,10 @@
 @import url('https://fonts.googleapis.com/css?family=Baloo+Bhai');
 
 @import 'variables';
+@import 'animations';
 @import 'button';
 @import 'artist-grid';
+@import 'user-grid';
 @import 'navbar';
 
 body {
@@ -21,6 +23,7 @@ body {
 .navbar + .wrapper {
 	padding-top: 4rem;
 	background: #f8f8f8;
+	min-height: calc(100vh - 4rem);
 }
 
 main {
