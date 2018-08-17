@@ -16,7 +16,7 @@ passport.deserializeUser((id, done) => {
 passport.use(new SpotifyStrategy({
 	clientID: process.env.SPOTIFY_ID,
 	clientSecret: process.env.SPOTIFY_SECRET,
-	callbackURL: 'http://localhost:8080/auth/spotify/callback',
+	callbackURL: `${process.env.BASE_URL}/auth/spotify/callback`,
 }, (accessToken, refreshToken, profile, done) => {
 	console.log(chalk.blue(accessToken));
 	console.log(chalk.cyan(refreshToken));
