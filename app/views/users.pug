@@ -35,13 +35,15 @@ block content
 mixin artists(artists)
   - for (var i = 0; i < 5; ++i) {
     .group
-      img(src=artists[i].images[0].url)
-      .item-name=artists[i].name
+      if (artists[i])
+        img(src=artists[i].images[0].url)
+        .item-name=artists[i].name
   - }
 
 mixin tracks(tracks)
   - for (var i = 0; i < 5; ++i) {
     .group
-      img(src=tracks[i].album.images[0].url)
-      .item-name=`${tracks[i].artists[0].name} - ${tracks[i].name}`
+      if (tracks[i])
+        img(src=tracks[i].album.images[0].url)
+        .item-name=`${tracks[i].artists[0].name} - ${tracks[i].name}`
   - }

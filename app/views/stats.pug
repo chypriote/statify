@@ -33,18 +33,20 @@ block content
 
 mixin artist(artist)
   .item-panel
-    .item-picture
-      img(src=artist.images[0].url)
-    .item-body
-      .item-name=artist.name
+    if artist
+      .item-picture
+        img(src=artist.images[0].url)
+      .item-body
+        .item-name=artist.name
 
 mixin track(track)
   .item-panel
-    .item-picture
-      img(src=track.album.images[0].url)
-    .item-body
-      .item-name=track.name
-      .item-subtitle
-        each artist, id in track.artists
-          span=`${artist.name}${id === track.artists.length - 1 ? '' : ', '}`
-      .item-caption=track.album.name
+    if track
+      .item-picture
+        img(src=track.album.images[0].url)
+      .item-body
+        .item-name=track.name
+        .item-subtitle
+          each artist, id in track.artists
+            span=`${artist.name}${id === track.artists.length - 1 ? '' : ', '}`
+        .item-caption=track.album.name
