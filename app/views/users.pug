@@ -36,7 +36,7 @@ mixin artists(artists)
   - for (var i = 0; i < 5; ++i) {
     .group
       if (artists[i])
-        img(src=artists[i].images[0].url)
+        img(src=artists[i].images.length ? artists[i].images[0].url : '/assets/default.png')
         .item-name=artists[i].name
   - }
 
@@ -44,6 +44,6 @@ mixin tracks(tracks)
   - for (var i = 0; i < 5; ++i) {
     .group
       if (tracks[i])
-        img(src=tracks[i].album.images[0].url)
+        img(src=tracks[i].album.images.length ? tracks[i].album.images[0].url : '/assets/default.png')
         .item-name=`${tracks[i].artists[0].name} - ${tracks[i].name}`
   - }

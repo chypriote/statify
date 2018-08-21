@@ -35,7 +35,7 @@ mixin artist(artist)
   .item-panel
     if artist
       .item-picture
-        img(src=artist.images[0].url)
+        img(src=artist.images.length ? artist.images[0].url : '/assets/default.png')
       .item-body
         .item-name=artist.name
 
@@ -43,7 +43,7 @@ mixin track(track)
   .item-panel
     if track
       .item-picture
-        img(src=track.album.images[0].url)
+        img(src=track.album.images.length ? track.album.images[0].url : '/assets/default.png')
       .item-body
         .item-name=track.name
         .item-subtitle
