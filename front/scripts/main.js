@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 const elems = document.querySelectorAll('.group');
 
 function toggleClass() {

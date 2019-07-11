@@ -22,7 +22,7 @@ gulp.task('reload', () => browserSync.reload({ stream: true }));
 
 gulp.task('scripts', () => gulp.src('front/scripts/main.js')
 	.pipe(g.babel({
-		presets: ['env', 'minify'],
+		presets: ['@babel/preset-env', 'minify'],
 	}))
 	.pipe(g.rename({ suffix: '.min' }))
 	.pipe(gulp.dest('public/js'))
@@ -46,7 +46,7 @@ gulp.task('style', () => {
 		postcssNested(),
 		postcssCustomProperties(),
 		postcssColorFunction(),
-		autoprefixer({ browsers: ['last 2 versions'] }),
+		autoprefixer(),
 	];
 
 	return gulp.src('front/style/main.css')
@@ -57,13 +57,13 @@ gulp.task('style', () => {
 		.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('build', ['style', 'images', 'scripts'], () => {});
+gulp.task('build', gulp.parallel('style', 'images', 'scripts'));
 
 gulp.task('watch', () => {
-	gulp.watch('front/style/**/*.css', ['style']);
-	gulp.watch('front/scripts/**/*.js', ['scripts']);
-	gulp.watch('front/assets/**/*', ['images']);
-	gulp.watch(['app/views/**/*.pug'], ['reload']);
+	gulp.watch('front/style/**/*.css', gulp.series('style'));
+	gulp.watch('front/scripts/**/*.js', gulp.series('scripts'));
+	gulp.watch('front/assets/**/*', gulp.series('images'));
+	gulp.watch(['app/views/**/*.pug'], gulp.series('reload'));
 });
 
-gulp.task('default', ['build', 'browser-sync', 'watch']);
+gulp.task('default', gulp.series('build', gulp.parallel('browser-sync', 'watch')));

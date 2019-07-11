@@ -11,10 +11,9 @@ const flash = require('express-flash');
 const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const expressValidator = require('express-validator');
 const errorHandler = require('errorhandler');
 
-dotenv.load({ path: '.env' });
+dotenv.config({ path: '.env' });
 const passportConfig = require('./app/config/passport');
 const homeController = require('./app/controllers/home');
 const userController = require('./app/controllers/user');
@@ -36,7 +35,6 @@ app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(expressValidator());
 app.use(session({
 	resave: true,
 	saveUninitialized: true,
