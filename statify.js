@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const errorHandler = require('errorhandler');
 
-dotenv.config({ path: '.env' });
+dotenv.config();
 const passportConfig = require('./app/config/passport');
 const homeController = require('./app/controllers/home');
 const userController = require('./app/controllers/user');
